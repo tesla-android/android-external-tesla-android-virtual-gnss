@@ -1,0 +1,24 @@
+cc_binary {
+    name: "tesla-android-virtual-gnss",
+
+    srcs: ["tesla-android-virtual-gnss.c", "cJSON.c"],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libws",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-O2",
+        "-std=c99",
+        "-pthread",
+        "-pedantic"
+    ],
+
+    include_dirs: [
+        "external/libws",
+     ],
+}
