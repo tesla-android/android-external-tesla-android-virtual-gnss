@@ -33,6 +33,18 @@ void webSocketOnMessage(__attribute__ ((unused)) ws_cli_conn_t *client,
     if (cJSON_IsString(longitude) && (longitude->valuestring != NULL)) {
       property_set("persist.tesla-android.gps.longitude", longitude->valuestring);
     }
+    cJSON *speed = cJSON_GetObjectItemCaseSensitive(root, "speed");
+    if (cJSON_IsString(speed) && (speed->valuestring != NULL)) {
+      property_set("persist.tesla-android.gps.speed", speed->valuestring);
+    } else {
+      property_set("persist.tesla-android.gps.speed", "not-available");
+    }
+    cJSON *bearing = cJSON_GetObjectItemCaseSensitive(root, "bearing");
+    if (cJSON_IsString(bearing) && (bearing->valuestring != NULL)) {
+      property_set("persist.tesla-android.gps.bearing", bearing->valuestring);
+    } else {
+      property_set("persist.tesla-android.gps.bearing", "not-available");
+    }
     cJSON *vertical_accuracy = cJSON_GetObjectItemCaseSensitive(root, "vertical_accuracy");
     if (cJSON_IsString(vertical_accuracy) && (vertical_accuracy->valuestring != NULL)) {
       property_set("persist.tesla-android.gps.vertical_accuracy", vertical_accuracy->valuestring);
